@@ -8,6 +8,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
+// In-memory database: Note that this data will be lost when the server restarts.
 let students = []; // This will act as our in-memory database
 
 // Create a new student (POST)
