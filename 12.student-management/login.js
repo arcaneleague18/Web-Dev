@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
-// Login form with simple validation
+/**
+ * Login form component with simple validation.
+ * @returns {JSX.Element}
+ */
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
@@ -32,20 +35,32 @@ const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="email" name="email" value={form.email} onChange={handleChange} />
-        </label>
+      <form onSubmit={handleSubmit} aria-label="Login form">
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          required
+          autoComplete="username"
+        />
         <br />
-        <label>
-          Password:
-          <input type="password" name="password" value={form.password} onChange={handleChange} />
-        </label>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          required
+          autoComplete="current-password"
+        />
         <br />
         <button type="submit">Login</button>
       </form>
-      {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
+      {error && <div style={{ color: 'red', marginTop: 10 }} role="alert">{error}</div>}
     </div>
   );
 };

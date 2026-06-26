@@ -5,11 +5,15 @@ import Login from './pages/Login';
 import Contact from './pages/Contact';
 import About from './pages/About';
 
+/**
+ * Main application component with navigation and routes.
+ * @returns {JSX.Element}
+ */
 const App = () => {
   return (
     <Router>
-      <nav>
-        <ul>
+      <nav aria-label="Main navigation">
+        <ul style={{ display: 'flex', gap: '1rem', listStyle: 'none', padding: 0 }}>
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/login">Login</Link></li>
           <li><Link to="/contact">Contact</Link></li>

@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * About page component.
+ * @returns {JSX.Element}
+ */
 const About = () => {
   return (
     <div>

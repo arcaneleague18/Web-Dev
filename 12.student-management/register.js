@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
-// Registration form with basic validation
+/**
+ * Registration form component with basic validation.
+ * @returns {JSX.Element}
+ */
 const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
@@ -33,25 +36,43 @@ const Register = () => {
   return (
     <div>
       <h1>Register</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="name" value={form.name} onChange={handleChange} />
-        </label>
+      <form onSubmit={handleSubmit} aria-label="Registration form">
+        <label htmlFor="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={form.name}
+          onChange={handleChange}
+          required
+          autoComplete="name"
+        />
         <br />
-        <label>
-          Email:
-          <input type="email" name="email" value={form.email} onChange={handleChange} />
-        </label>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+          required
+          autoComplete="email"
+        />
         <br />
-        <label>
-          Password:
-          <input type="password" name="password" value={form.password} onChange={handleChange} />
-        </label>
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={form.password}
+          onChange={handleChange}
+          required
+          autoComplete="new-password"
+        />
         <br />
         <button type="submit">Submit</button>
       </form>
-      {error && <div style={{ color: 'red', marginTop: 10 }}>{error}</div>}
+      {error && <div style={{ color: 'red', marginTop: 10 }} role="alert">{error}</div>}
     </div>
   );
 };
