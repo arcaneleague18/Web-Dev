@@ -6,7 +6,18 @@ const helmet = require('helmet');
 
 const app = express();
 app.use(cors()); // Enable CORS for all origins (adjust as needed)
-app.use(helmet()); // Basic security headers
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // Set to true and configure CSP in production
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    hsts: true,
+    xssFilter: true,
+    ieNoOpen: true,
+    hidePoweredBy: true,
+    noSniff: true,
+    frameguard: { action: "deny" },
+  })
+); // Basic security headers
 app.use(bodyParser.json());
 
 const PORT = 3000;
@@ -35,6 +46,7 @@ function verifyToken(req, res, next) {
   }
   jwt.verify(token, SECRET_KEY, (err, decoded) => {
     if (err) {
+      // Avoid exposing specifics about token verification failure
       return res.status(401).json({ error: 'Failed to authenticate token' });
     }
     req.userId = decoded.id;

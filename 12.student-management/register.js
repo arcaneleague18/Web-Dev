@@ -8,11 +8,19 @@ const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
 
+  /**
+   * Handles input change and resets error state.
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   */
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError('');
   };
 
+  /**
+   * Handles form submission and validates inputs.
+   * @param {React.FormEvent<HTMLFormElement>} e
+   */
   const handleSubmit = e => {
     e.preventDefault();
     // Simple validation

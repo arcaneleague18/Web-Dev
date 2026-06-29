@@ -10,7 +10,7 @@ try:
         xml_doc = etree.parse(xml)
     with open(xsd_file, 'r') as xsd:
         xsd_doc = etree.parse(xsd)
-    
+
     # Create an XML schema object
     xmlschema = etree.XMLSchema(xsd_doc)
 
@@ -27,6 +27,8 @@ try:
 except FileNotFoundError as e:
     print(f"File not found: {e.filename}")
 except etree.XMLSyntaxError as e:
+    # Catch malformed XML or XSD syntax
     print(f"XML or XSD syntax error: {e}")
 except Exception as e:
+    # Catch-all for other unexpected exceptions
     print(f"An error occurred: {e}")
