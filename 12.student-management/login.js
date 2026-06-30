@@ -8,11 +8,19 @@ const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
 
+  /**
+   * Handles input changes and resets error state.
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   */
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError('');
   };
 
+  /**
+   * Handles form submission and validates input fields.
+   * @param {React.FormEvent<HTMLFormElement>} e
+   */
   const handleSubmit = e => {
     e.preventDefault();
     if (!form.email.trim() || !form.password) {
