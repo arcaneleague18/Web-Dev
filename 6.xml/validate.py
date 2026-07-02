@@ -11,7 +11,7 @@ try:
     with open(xsd_file, 'r') as xsd:
         xsd_doc = etree.parse(xsd)
 
-    # Create an XML schema object
+    # Create an XML schema object for validation
     xmlschema = etree.XMLSchema(xsd_doc)
 
     # Validate the XML against the XSD
