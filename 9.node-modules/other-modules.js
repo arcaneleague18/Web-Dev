@@ -6,9 +6,10 @@ const events = require('events');
 // Create an event emitter instance
 const eventEmitter = new events.EventEmitter();
 
-// Attach an event listener for the 'server Started' event
-eventEmitter.on("server Started", () => {
-    console.log("Server has started successfully");
+// Attach an event listener for the 'serverStarted' event
+// (Fixed event name to have no spaces for consistency)
+eventEmitter.on('serverStarted', () => {
+    console.log('Server has started successfully');
 });
 
 // Create the HTTP server
@@ -38,7 +39,7 @@ Uptime: ${os.uptime()} seconds
 
 // Start the server
 server.listen(3000, () => {
-    // Emit the 'server Started' event
-    eventEmitter.emit('server Started');
-    console.log("Server is running on http://localhost:3000");
+    // Emit the 'serverStarted' event (fixed name)
+    eventEmitter.emit('serverStarted');
+    console.log('Server is running on http://localhost:3000');
 });

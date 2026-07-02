@@ -7,11 +7,15 @@ let chartInstance = null;
 
 /**
  * Fetches the weather data for the city entered by the user and draws the temperature chart.
+ * Alerts the user if the city name is missing or not found. Logs errors for debugging.
  */
 const getWeather = async () => {
   const cityInput = document.getElementById("city");
   const city = cityInput.value.trim();
-  if (!city) return alert("Enter a city name");
+  if (!city) {
+    alert("Enter a city name");
+    return;
+  }
 
   try {
     const res = await fetch(`${apiUrl}?q=${encodeURIComponent(city)}&units=metric&cnt=7&appid=${apiKey}`);
@@ -22,12 +26,18 @@ const getWeather = async () => {
     drawChart(labels, temps);
   } catch (err) {
     alert(err.message);
+    // Log error for debugging
+    if (window && window.console) {
+      console.error("Weather fetch error:", err);
+    }
   }
 };
 
 /**
  * Draws (or updates) the temperature line chart given the labels and temperature values.
  * Destroys the previous chart instance to prevent memory leaks.
+ * @param {string[]} labels - Array of date labels for the chart.
+ * @param {number[]} temps - Array of temperature values for the chart.
  */
 const drawChart = (labels, temps) => {
   const chartElem = document.getElementById("chart");
